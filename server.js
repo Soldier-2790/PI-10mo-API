@@ -1,0 +1,21 @@
+const express = require('express')
+const mysql = require('mysql')
+const myconn = require('express-myconnection')
+const usuarioR = require('./routes/usuario')
+const areaR = require('./routes/area')
+const revisionR = require('./routes/revision')
+const incidenciaR = require('./routes/incidencia')
+const database = require('./db')
+const app = express();
+app.set('port', process.env.PORT || 9000)
+app.use(myconn(mysql, database, 'single'))
+app.use(express.json())
+app.get('/', (req, res) => {
+  res.send('Bienvenido a la API de Farm Guardian')
+  console.log('Empezando la API')
+})
+app.use('/usuario', usuarioR)
+app.use('/area', areaR)
+app.listen(app.get('port'), () => {
+  console.log(`API escuchando en el puerto ${app.get('port')}`)
+})

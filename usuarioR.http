@@ -1,0 +1,23 @@
+###
+GET http://localhost:9000/usuario HTTP/1.1
+
+###
+POST http://localhost:9000/usuario HTTP/1.1
+Content-Type: application/json
+
+{
+  "Usu_NomCompl": "Elias Gamboa",
+  "Usu_CE": "elias@example.com",
+  "Usu_Contr": "123456789",
+  "Usu_Gen": "Masculino",
+  "Usu_TU": "Administrador"
+}
+###
+DELETE http://localhost:9000/usuario HTTP/1.1
+###
+PUT http://localhost:9000/usuario HTTP/1.1
+Content-Type: application/json
+
+{
+
+}
