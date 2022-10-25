@@ -1,6 +1,7 @@
 const express = require('express')
 const usuario = express.Router()
 usuario.get('/', (req, res) => {
+  console.log('Accediendo a usuarios')
   req.getConnection((err, conn) => {
     if (err) return res.send(err)
     conn.query('Select * From usuario', (err, rows) => {

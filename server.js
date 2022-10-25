@@ -16,6 +16,8 @@ app.get('/', (req, res) => {
 })
 app.use('/usuario', usuarioR)
 app.use('/area', areaR)
+app.use('/revision', revisionR)
+app.use('/incidencia', incidenciaR)
 app.listen(app.get('port'), () => {
   console.log(`API escuchando en el puerto ${app.get('port')}`)
 })

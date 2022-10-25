@@ -1,6 +1,7 @@
 const express = require('express')
 const area = express.Router()
 area.get('/', (req, res) => {
+  console.log('Accediendo a areas')
   req.getConnection((err, conn) => {
     if (err) return res.send(err)
     conn.query('Select * From area', (err, rows) => {
