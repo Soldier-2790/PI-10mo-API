@@ -1,6 +1,6 @@
 const express = require('express')
-const usuario = express.Router()
-usuario.get('/', (req, res) => {
+const usuarioR = express.Router()
+usuarioR.get('/', (req, res) => {
   console.log('Accediendo a usuarios')
   req.getConnection((err, conn) => {
     if (err) return res.send(err)
@@ -11,7 +11,7 @@ usuario.get('/', (req, res) => {
     })
   })
 })
-usuario.post('/', (req, res) => {
+usuarioR.post('/', (req, res) => {
   req.getConnection((err, conn) => {
     if (err) return res.send(err)
     console.log(req.body)

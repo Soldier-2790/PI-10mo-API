@@ -24,7 +24,7 @@ incidencia.post('/', (req, res) => {
 incidencia.delete('/:id', (req, res) => {
   req.getConnection((err, conn) => {
     if (err) return res.send(err)
-    conn.query('Delete From incidencia Where id = ?', [req.params.id], (err, rows) => {
+    conn.query('Delete From incidencia Where Incid_ID = ?', [req.params.id], (err, rows) => {
       if (err) return res.send(err)
       res.send('Incidencia eliminada')
     })
@@ -33,7 +33,7 @@ incidencia.delete('/:id', (req, res) => {
 incidencia.put('/:id', (req, res) => {
   req.getConnection((err, conn) => {
     if (err) return res.send(err)
-    conn.query('Update incidencia Set ? Where id = ?', [req.body, req.params.id], (err, rows) => {
+    conn.query('Update incidencia Set ? Where Incid_ID = ?', [req.body, req.params.id], (err, rows) => {
       if (err) return res.send(err)
       res.send('Incidencia actualizado')
     })
