@@ -19,37 +19,37 @@ const Incidencia = function (incidencia) {
 //Servicios de base de datos
 const servBD = require('../recursos/conexBD')
 //Métodos del modelo
-Incidencia.crear = (nueArea, result) => {
-  servBD.query("Insert Into incidencia Set ?", nueArea, (err, res) => {
+Incidencia.crear = (nueIncidencia, result) => {
+  servBD.query("Insert Into incidencia Set ?", nueIncidencia, (err, res) => {
     if (err) {
       console.log("Error: ", err)
       result(err, null)
       return
     }
-    console.log("Creando Area: ", { id: res.insertID, ...nueArea })
-    result(null, { id: res.insertID, ...nueArea })
+    console.log("Creando incidencia: ", { id: res.insertID, ...nueIncidencia })
+    result(null, { id: res.insertID, ...nueIncidencia })
   })
-}
+}//Listo
 Incidencia.ObtPorId = (id, result) => {
-  servBD.query(`Select * From incidencia Where Area_ID = ${id}`, (err, res) => {
+  servBD.query(`Select * From incidencia Where Incid_ID = ${id}`, (err, res) => {
     if (err) {
       console.log("Error:", err)
       result(err, null)
       return
     }
     if (res.length) {
-      console.log("Se encontró el area: ", res[0])
+      console.log("Se encontró el incidencia: ", res[0])
       result(null, res[0])
       return
     }
     //No encuentra
     result({ kind: "no_encontrado" }, null)
   })
-}
-Incidencia.ObtTodos = (area_Nom, result) => {
+}//Listo
+Incidencia.ObtTodos = (Incid_Prior, result) => {
   let consult = "Select * From incidencia"
-  if (area_Nom) {
-    query += `Where Area_Nom Like '%${area_Nom}'`
+  if (Incid_Prior) {
+    query += `Where Incid_Prior Like '%${Incid_Prior}'`
   }
   servBD.query(consult, (err, res) => {
     if (err) {
@@ -57,25 +57,25 @@ Incidencia.ObtTodos = (area_Nom, result) => {
       result(null, err)
       return
     }
-    console.log("Areas: ", res)
+    console.log("Incidencias: ", res)
     result(null, res)
   })
-}
-Incidencia.ObtTodosActivos = result => {
-  servBD.query("Select * From incidencia Where Area_E = 'Activo'", (err, res) => {
+}//Listo
+Incidencia.ObtTodosEnProc = result => {
+  servBD.query("Select * From incidencia Where Incid_Prior = 'EnProceso'", (err, res) => {
     if (err) {
       console.log("Error: ", err)
       result(null, err)
       return
     }
-    console.log("Areas activas: ", res)
+    console.log("Incidencias en proceso: ", res)
     result(null, res)
   })
-}
-Incidencia.ActPorId = (id, area, result) => {
+}//Listo
+Incidencia.ActPorId = (id, incidencia, result) => {
   servBD.query(
-    "Update incidencia Set Area_Num = ?, Area_Nom = ?, Area_Descr = ?, Area_Espec = ?, Area_CA = ?, Area_E = ? Where Area_ID = ?",
-    [area.Area_Num, area.Area_Nom, area.Area_Descr, area.Area_Espec, area.Area_CA, area.Area_E, id], (err, res) => {
+    "Update incidencia Set Incid_Infor = ?, Incid_FR = ?, Incid_Prior = ?, Incid_GR = ?, Incid_AR = ? Where Incid_ID = ?",
+    [incidencia.Incid_Infor, incidencia.Incid_FR, incidencia.Incid_Prior, incidencia.Incid_GR, incidencia.Incid_AR, id], (err, res) => {
       if (err) {
         console.log("Error: ", err)
         result(null, err)
@@ -86,12 +86,12 @@ Incidencia.ActPorId = (id, area, result) => {
         result({ kind: "no_encontrado" }, null)
         return
       }
-      console.log("Actualizando incidencia: ", { id: id, ...area })
-      result(null, { id: id, ...area })
+      console.log("Actualizando incidencia: ", { id: id, ...incidencia })
+      result(null, { id: id, ...incidencia })
     })
-}
+}//Listo
 Incidencia.BorrarPorId = (id, result) => {
-  servBD.query("Delete From incidencia Where Area_ID = ?", id, (err, res) => {
+  servBD.query("Delete From incidencia Where Incid_ID = ?", id, (err, res) => {
     if (err) {
       console.log("error: ", err)
       result(null, err)
@@ -102,10 +102,10 @@ Incidencia.BorrarPorId = (id, result) => {
       result({ kind: "no_encontrado" }, null)
       return
     }
-    console.log("Borrando el area con identificador: ", id)
+    console.log("Borrando el incidencia con identificador: ", id)
     result(null, res)
   })
-}
+}//Listo
 Incidencia.BorrarTodo = result => {
   servBD.query("Delete From incidencia", (err, res) => {
     if (err) {
@@ -113,8 +113,8 @@ Incidencia.BorrarTodo = result => {
       result(null, err)
       return
     }
-    console.log(`Borrados ${res.affectedRows} areas`)
+    console.log(`Borrados ${res.affectedRows} incidencias`)
     result(null, res)
   })
-}
+}//Listo
 module.exports = Incidencia

@@ -6,7 +6,7 @@
   `Usu_Contr` varchar(200) NOT NULL COMMENT 'Contraseña del usuario',
   `Usu_Gen` ENUM ('Masculino', 'Femenino') COMMENT 'Genero del usuario',
   `Usu_TU` ENUM ('Administrador', 'Guardia') NOT NULL DEFAULT "Guardia" COMMENT 'Tipo de usuario',
-  `Usu_AA` integer COMMENT 'Area asignada',
+  `Usu_AA` integer COMMENT 'usuario asignada',
   `Usu_E` ENUM ('Activo', 'Inactivo') DEFAULT ('Activo') COMMENT 'Estatus del usuario',
   `Usu_FP` varchar(200) COMMENT 'Foto de perfil del usuario',
   `Usu_FechaCrea` datetime DEFAULT (now()) COMMENT 'Fecha de creación del usuario'
@@ -26,37 +26,37 @@ const Usuario = function (usuario) {
 }
 const servBD = require('../recursos/conexBD')
 //Métodos del modelo
-Incidencia.crear = (nueArea, result) => {
-  servBD.query("Insert Into incidencia Set ?", nueArea, (err, res) => {
+Usuario.crear = (nueUsuario, result) => {
+  servBD.query("Insert Into usuario Set ?", nueUsuario, (err, res) => {
     if (err) {
       console.log("Error: ", err)
       result(err, null)
       return
     }
-    console.log("Creando Area: ", { id: res.insertID, ...nueArea })
-    result(null, { id: res.insertID, ...nueArea })
+    console.log("Creando Usuario: ", { id: res.insertID, ...nueUsuario })
+    result(null, { id: res.insertID, ...nueUsuario })
   })
-}
-Incidencia.ObtPorId = (id, result) => {
-  servBD.query(`Select * From incidencia Where Area_ID = ${id}`, (err, res) => {
+}//Listo
+Usuario.ObtPorId = (id, result) => {
+  servBD.query(`Select * From usuario Where Usu_ID = ${id}`, (err, res) => {
     if (err) {
       console.log("Error:", err)
       result(err, null)
       return
     }
     if (res.length) {
-      console.log("Se encontró el area: ", res[0])
+      console.log("Se encontró el usuario: ", res[0])
       result(null, res[0])
       return
     }
     //No encuentra
     result({ kind: "no_encontrado" }, null)
   })
-}
-Incidencia.ObtTodos = (area_Nom, result) => {
-  let consult = "Select * From incidencia"
-  if (area_Nom) {
-    query += `Where Area_Nom Like '%${area_Nom}'`
+}//Listo
+Usuario.ObtTodos = (Usu_NomCompl, result) => {
+  let consult = "Select * From Usuario"
+  if (Usu_NomCompl) {
+    query += `Where Usu_NomCompl Like '%${Usu_NomCompl}'`
   }
   servBD.query(consult, (err, res) => {
     if (err) {
@@ -64,25 +64,25 @@ Incidencia.ObtTodos = (area_Nom, result) => {
       result(null, err)
       return
     }
-    console.log("Areas: ", res)
+    console.log("Usuarios: ", res)
     result(null, res)
   })
-}
-Incidencia.ObtTodosActivos = result => {
-  servBD.query("Select * From incidencia Where Area_E = 'Activo'", (err, res) => {
+}//Listo
+Usuario.ObtTodosActivos = result => {
+  servBD.query("Select * From usuario Where Usu_E = 'Activo'", (err, res) => {
     if (err) {
       console.log("Error: ", err)
       result(null, err)
       return
     }
-    console.log("Areas activas: ", res)
+    console.log("usuarios activas: ", res)
     result(null, res)
   })
-}
-Incidencia.ActPorId = (id, area, result) => {
+}//Listo
+Usuario.ActPorId = (id, usuario, result) => {
   servBD.query(
-    "Update incidencia Set Area_Num = ?, Area_Nom = ?, Area_Descr = ?, Area_Espec = ?, Area_CA = ?, Area_E = ? Where Area_ID = ?",
-    [area.Area_Num, area.Area_Nom, area.Area_Descr, area.Area_Espec, area.Area_CA, area.Area_E, id], (err, res) => {
+    "Update usuario Set Usu_NomCompl = ?, Usu_CE = ?, Usu_Contr = ?, Usu_Gen = ?, Usu_TU = ?, Usu_AA = ?, Usu_E = ?, Usu_FP = ?  Where Usu_ID = ?",
+    [usuario.Usu_NomCompl, usuario.Usu_CE, usuario.Usu_Contr, usuario.Usu_Gen, usuario.Usu_TU, usuario.Usu_AA, usuario.Usu_E, usuario.Usu_FP, id], (err, res) => {
       if (err) {
         console.log("Error: ", err)
         result(null, err)
@@ -93,12 +93,12 @@ Incidencia.ActPorId = (id, area, result) => {
         result({ kind: "no_encontrado" }, null)
         return
       }
-      console.log("Actualizando incidencia: ", { id: id, ...area })
-      result(null, { id: id, ...area })
+      console.log("Actualizando Usuario: ", { id: id, ...usuario })
+      result(null, { id: id, ...usuario })
     })
-}
-Incidencia.BorrarPorId = (id, result) => {
-  servBD.query("Delete From incidencia Where Area_ID = ?", id, (err, res) => {
+}//Listo
+Usuario.BorrarPorId = (id, result) => {
+  servBD.query("Delete From usuario Where Usu_ID = ?", id, (err, res) => {
     if (err) {
       console.log("error: ", err)
       result(null, err)
@@ -109,19 +109,19 @@ Incidencia.BorrarPorId = (id, result) => {
       result({ kind: "no_encontrado" }, null)
       return
     }
-    console.log("Borrando el area con identificador: ", id)
+    console.log("Borrando al usuario con identificador: ", id)
     result(null, res)
   })
-}
-Incidencia.BorrarTodo = result => {
-  servBD.query("Delete From incidencia", (err, res) => {
+}//Listo
+Usuario.BorrarTodo = result => {
+  servBD.query("Delete From usuario", (err, res) => {
     if (err) {
       console.log("Error: ", err)
       result(null, err)
       return
     }
-    console.log(`Borrados ${res.affectedRows} areas`)
+    console.log(`Borrados ${res.affectedRows} usuarios`)
     result(null, res)
   })
-}
+}//Listo
 module.exports = Usuario

@@ -34,7 +34,7 @@ Area.crear = (nueArea, result) => {
     console.log("Creando Area: ", { id: res.insertID, ...nueArea })
     result(null, { id: res.insertID, ...nueArea })
   })
-}
+}//Listo
 Area.ObtPorId = (id, result) => {
   servBD.query(`Select * From area Where Area_ID = ${id}`, (err, res) => {
     if (err) {
@@ -50,7 +50,7 @@ Area.ObtPorId = (id, result) => {
     //No encuentra
     result({ kind: "no_encontrado" }, null)
   })
-}
+}//Listo
 Area.ObtTodos = (area_Nom, result) => {
   let consult = "Select * From area"
   if (area_Nom) {
@@ -65,7 +65,7 @@ Area.ObtTodos = (area_Nom, result) => {
     console.log("Areas: ", res)
     result(null, res)
   })
-}
+}//Listo
 Area.ObtTodosActivos = result => {
   servBD.query("Select * From area Where Area_E = 'Activo'", (err, res) => {
     if (err) {
@@ -76,7 +76,7 @@ Area.ObtTodosActivos = result => {
     console.log("Areas activas: ", res)
     result(null, res)
   })
-}
+}//Listo
 Area.ActPorId = (id, area, result) => {
   servBD.query(
     "Update area Set Area_Num = ?, Area_Nom = ?, Area_Descr = ?, Area_Espec = ?, Area_CA = ?, Area_E = ? Where Area_ID = ?",
@@ -94,7 +94,7 @@ Area.ActPorId = (id, area, result) => {
       console.log("Actualizando area: ", { id: id, ...area })
       result(null, { id: id, ...area })
     })
-}
+}//Listo
 Area.BorrarPorId = (id, result) => {
   servBD.query("Delete From area Where Area_ID = ?", id, (err, res) => {
     if (err) {
@@ -110,7 +110,7 @@ Area.BorrarPorId = (id, result) => {
     console.log("Borrando el area con identificador: ", id)
     result(null, res)
   })
-}
+}//Listo
 Area.BorrarTodo = result => {
   servBD.query("Delete From area", (err, res) => {
     if (err) {
@@ -121,5 +121,5 @@ Area.BorrarTodo = result => {
     console.log(`Borrados ${res.affectedRows} areas`)
     result(null, res)
   })
-}
+}//Listo
 module.exports = Area
