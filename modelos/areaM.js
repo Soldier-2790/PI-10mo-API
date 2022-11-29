@@ -1,6 +1,6 @@
-const servBD = require('../recursos/conexBD')
 /*
- `Area_ID` integer PRIMARY KEY AUTO_INCREMENT COMMENT 'Identificador del area',
+`Area` (
+  `Area_ID` integer PRIMARY KEY AUTO_INCREMENT COMMENT 'Identificador del area',
   `Area_Num` integer COMMENT 'Número de area',
   `Area_Nom` varchar(100) COMMENT 'Nombre del area',
   `Area_Descr` varchar(100) COMMENT 'Descripción del area',
@@ -8,6 +8,7 @@ const servBD = require('../recursos/conexBD')
   `Area_CA` integer COMMENT 'Cantidad de animales',
   `Area_E` ENUM ('Activo', 'Inactivo') DEFAULT ('Activo') COMMENT 'Estatus del area',
   `Area_FechaCrea` datetime DEFAULT (now()) COMMENT 'Fecha de creación del area'
+);
 */
 //Constructor
 const Area = function (area) {
@@ -20,6 +21,9 @@ const Area = function (area) {
   this.Area_E = area.Area_E
   this.Area_FechaCrea = area.Area_FechaCrea
 }
+//Servicios de base de datos
+const servBD = require('../recursos/conexBD')
+//Métodos del modelo
 Area.crear = (nueArea, result) => {
   servBD.query("Insert Into area Set ?", nueArea, (err, res) => {
     if (err) {
