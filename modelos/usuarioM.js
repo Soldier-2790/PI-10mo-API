@@ -12,6 +12,7 @@
   `Usu_FechaCrea` datetime DEFAULT (now()) COMMENT 'Fecha de creación del usuario'
 );
 */
+/*
 const Usuario = function (usuario) {
   this.Usu_ID = usuario.Usu_ID
   this.Usu_NomCompl = usuario.Usu_NomCompl
@@ -125,3 +126,4 @@ Usuario.BorrarTodo = result => {
   })
 }//Listo
 module.exports = Usuario
+*/

@@ -10,6 +10,7 @@
   `Area_FechaCrea` datetime DEFAULT (now()) COMMENT 'Fecha de creación del area'
 );
 */
+/*
 //Constructor
 const Area = function (area) {
   this.Area_ID = area.Area_ID
@@ -123,3 +124,4 @@ Area.BorrarTodo = result => {
   })
 }//Listo
 module.exports = Area
+*/

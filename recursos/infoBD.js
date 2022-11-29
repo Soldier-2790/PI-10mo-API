@@ -1,9 +1,9 @@
 //Base de datos
 const infoBD = {
-  Host: 'localhost',
-  Port: 3306,
-  User: 'InterPro10mo',
-  Password: 'FarmGuardianApp',
-  Database: 'UTM_Proyecto'
+  host: 'localhost',
+  port: 3306,
+  user: 'InterPro10mo',
+  password: 'FarmGuardianApp',
+  database: 'UTM_Proyecto'
 }
 module.exports = infoBD

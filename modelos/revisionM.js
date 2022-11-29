@@ -7,6 +7,8 @@
   `Rev_AR` integer NOT NULL COMMENT 'Identificador del Revision al que se le hizo revisión'
 );
 */
+
+/*
 const Revision = function (revision) {
   this.Rev_ID = revision.Rev_ID
   this.Rev_Infor = revision.Rev_Infor
@@ -58,7 +60,7 @@ Revision.ObtTodos = (Rev_Infor, result) => {
     result(null, res)
   })
 }//Listo
-/*
+
 Revision.ObtTodos = result => {
   servBD.query("Select * From revision Where Incid_Prior = 'EnProceso'", (err, res) => {
     if (err) {
@@ -70,7 +72,7 @@ Revision.ObtTodos = result => {
     result(null, res)
   })
 }//Listo
-*/
+
 Revision.ActPorId = (id, Revision, result) => {
   servBD.query(
     "Update revision Set Rev_Infor = ?, Rev_FR = ?, Rev_GR = ?, Rev_AR = ? Where Rev_ID = ?",
@@ -117,3 +119,4 @@ Revision.BorrarTodo = result => {
   })
 }//Listo
 module.exports = Revision
+*/

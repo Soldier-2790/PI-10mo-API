@@ -1,6 +1,6 @@
 const express = require('express')
-const incidencia = express.Router()
-incidencia.get('/', (req, res) => {
+const incidenciaR = express.Router()
+incidenciaR.get('/', (req, res) => {
   console.log('Accediendo a incidencias')
   req.getConnection((err, conn) => {
     if (err) return res.send(err)
@@ -11,7 +11,7 @@ incidencia.get('/', (req, res) => {
     })
   })
 })
-incidencia.post('/', (req, res) => {
+incidenciaR.post('/', (req, res) => {
   req.getConnection((err, conn) => {
     if (err) return res.send(err)
     console.log(req.body)
@@ -21,7 +21,7 @@ incidencia.post('/', (req, res) => {
     })
   })
 })
-incidencia.delete('/:id', (req, res) => {
+incidenciaR.delete('/:id', (req, res) => {
   req.getConnection((err, conn) => {
     if (err) return res.send(err)
     conn.query('Delete From incidencia Where Incid_ID = ?', [req.params.id], (err, rows) => {
@@ -30,7 +30,7 @@ incidencia.delete('/:id', (req, res) => {
     })
   })
 })
-incidencia.put('/:id', (req, res) => {
+incidenciaR.put('/:id', (req, res) => {
   req.getConnection((err, conn) => {
     if (err) return res.send(err)
     conn.query('Update incidencia Set ? Where Incid_ID = ?', [req.body, req.params.id], (err, rows) => {
@@ -39,4 +39,4 @@ incidencia.put('/:id', (req, res) => {
     })
   })
 })
-module.exports = incidencia
+module.exports = incidenciaR

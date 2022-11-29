@@ -1,3 +1,4 @@
+/*
 const areaM = require('../modelos/areaM')
 const areaS = {}
 areaS.crear = (req, res) => {
@@ -104,3 +105,4 @@ areaS.BorrarTodo = (req, res) => {
     } else res.send({ message: `Todas las areas han sido eliminadas sastifactoriamente.` })
   })
 }
+*/

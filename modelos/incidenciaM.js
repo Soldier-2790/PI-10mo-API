@@ -8,6 +8,7 @@
   `Incid_AR` integer NOT NULL COMMENT 'Identificador del area al que se le hizo incidencia'
 );
 */
+/*
 const Incidencia = function (incidencia) {
   this.Incid_ID = incidencia.Incid_ID
   this.Incid_Infor = incidencia.Incid_Infor
@@ -118,3 +119,4 @@ Incidencia.BorrarTodo = result => {
   })
 }//Listo
 module.exports = Incidencia
+*/

@@ -1,6 +1,6 @@
 const express = require('express')
-const revision = express.Router()
-revision.get('/', (req, res) => {
+const revisionR = express.Router()
+revisionR.get('/', (req, res) => {
   console.log('Accediendo a revisiones')
   req.getConnection((err, conn) => {
     if (err) return res.send(err)
@@ -11,7 +11,7 @@ revision.get('/', (req, res) => {
     })
   })
 })
-revision.post('/', (req, res) => {
+revisionR.post('/', (req, res) => {
   req.getConnection((err, conn) => {
     if (err) return res.send(err)
     console.log(req.body)
@@ -21,22 +21,22 @@ revision.post('/', (req, res) => {
     })
   })
 })
-revision.delete('/:id', (req, res) => {
+revisionR.delete('/:id', (req, res) => {
   req.getConnection((err, conn) => {
     if (err) return res.send(err)
-    conn.query('Delete From revision Where id = ?', [req.params.id], (err, rows) => {
+    conn.query('Delete From revision Where Rev_ID = ?', [req.params.id], (err, rows) => {
       if (err) return res.send(err)
       res.send('Revision eliminada')
     })
   })
 })
-revision.put('/:id', (req, res) => {
+revisionR.put('/:id', (req, res) => {
   req.getConnection((err, conn) => {
     if (err) return res.send(err)
-    conn.query('Update revision Set ? Where id = ?', [req.body, req.params.id], (err, rows) => {
+    conn.query('Update revision Set ? Where Rev_ID = ?', [req.body, req.params.id], (err, rows) => {
       if (err) return res.send(err)
       res.send('Revision actualizada')
     })
   })
 })
-module.exports = revision
+module.exports = revisionR
