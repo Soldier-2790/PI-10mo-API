@@ -21,7 +21,7 @@ usuarioR.post('/', (req, res) => {
     })
   })
 })
-usuario.delete('/:id', (req, res) => {
+usuarioR.delete('/:id', (req, res) => {
   req.getConnection((err, conn) => {
     if (err) return res.send(err)
     conn.query('Delete From usuario Where Usu_ID = ?', [req.params.id], (err, rows) => {
@@ -30,7 +30,7 @@ usuario.delete('/:id', (req, res) => {
     })
   })
 })
-usuario.put('/:id', (req, res) => {
+usuarioR.put('/:id', (req, res) => {
   req.getConnection((err, conn) => {
     if (err) return res.send(err)
     conn.query('Update usuario Set ? Where Usu_ID = ?', [req.body, req.params.id], (err, rows) => {
@@ -39,4 +39,4 @@ usuario.put('/:id', (req, res) => {
     })
   })
 })
-module.exports = usuario
+module.exports = usuarioR

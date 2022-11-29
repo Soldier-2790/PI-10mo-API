@@ -51,11 +51,56 @@ areaS.ObtPorId = (req, res) => {
   })
 }
 areaS.ObtTodosActivos = (req, res) => {
-  areaM.ObtTodosActivos(err, data)=> {
+  areaM.ObtTodosActivos((err, data) => {
     if (err) {
       res.status(500).send({
         message: err.message || "Algún error ocurrió al estar encontrando las areas"
       })
     } else res.send(data)
+  })
+}
+areaS.ActPorId = (req, res) => {
+  if (!req.body) {
+    res.status(400).send({
+      message: "El contenido no puede estar vacio"
+    })
   }
+  console.log(req.body)
+  areaM.ActPorId(req.params.id, new areaM(req.body), (err, data) => {
+    if (err) {
+      if (err.kind === "not_found") {
+        res.status(404).send({
+          message: `No se encontró el area con el id ${req.params.id}.`
+        })
+      } else {
+        res.status(500).send({
+          message: `Error al actualizar el tutorial con el id ${req.params.id}.`
+        })
+      }
+    } else res.send(data)
+  })
+}
+areaS.BorrarPorId = (req, res) => {
+  areaM.BorrarPorId(req.params.id, (err, data) => {
+    if (err) {
+      if (err.kind === "not_found") {
+        res.status(404).send({
+          message: `No se encontró el area a borrar con id ${req.params.id}`
+        })
+      } else {
+        res.status(500).send({
+          message: `No se pudo borrar el area con el id ${req.params.id}`
+        })
+      }
+    } else res.send({ message: `Area borrado sastifactoriamente` })
+  })
+}
+areaS.BorrarTodo = (req, res) => {
+  areaM.BorrarTodo((err, data) => {
+    if (err) {
+      res.status(500).send({
+        message: err.message || "Un error ocurrió mientras se eliminaban todas las areas."
+      })
+    } else res.send({ message: `Todas las areas han sido eliminadas sastifactoriamente.` })
+  })
 }
