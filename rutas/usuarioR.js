@@ -24,7 +24,7 @@ usuarioR.post('/', (req, res) => {
 usuarioR.delete('/:id', (req, res) => {
   req.getConnection((err, conn) => {
     if (err) return res.send(err)
-    conn.query('Delete From usuario Where Usu_ID = ?', [req.params.id], (err, rows) => {
+    conn.query('Delete From usuario Where id = ?', [req.params.id], (err, rows) => {
       if (err) return res.send(err)
       res.send('Usuario eliminado')
     })
@@ -33,7 +33,7 @@ usuarioR.delete('/:id', (req, res) => {
 usuarioR.put('/:id', (req, res) => {
   req.getConnection((err, conn) => {
     if (err) return res.send(err)
-    conn.query('Update usuario Set ? Where Usu_ID = ?', [req.body, req.params.id], (err, rows) => {
+    conn.query('Update usuario Set ? Where id = ?', [req.body, req.params.id], (err, rows) => {
       if (err) return res.send(err)
       res.send('Usuario actualizado')
     })
