@@ -1,12 +1,12 @@
---Proyecto integrador 10 cuatrimestre
---Creamos la base de datos
+#--Proyecto integrador 10 cuatrimestre
+#--Creamos la base de datos
 Create Database UTM_Proyecto;
---Usamos la base de datos
+#--Usamos la base de datos
 Use UTM_Proyecto;
 --
 Create Database Farm_Guardian;
 Use Farm_Guardian;
---Creamos la tabla usuario
+#--Creamos la tabla usuario
 CREATE TABLE `Usuario` (
   `Usu_ID` integer PRIMARY KEY AUTO_INCREMENT COMMENT 'Identificador del usuario',
   `Usu_NomCompl` varchar(200) NOT NULL COMMENT 'Nombre completo de usuario',
@@ -47,7 +47,7 @@ CREATE TABLE `Revision` (
   `Rev_GR` integer NOT NULL COMMENT 'Identificador del guardia que hizo la revisión',
   `Rev_AR` integer NOT NULL COMMENT 'Identificador del area al que se le hizo revisión'
 );
---Creamos la tabla incidencia
+#--Creamos la tabla incidencia
 CREATE TABLE `Incidencia` (
   `Incid_ID` integer PRIMARY KEY AUTO_INCREMENT COMMENT 'Identificador de la incidencia',
   `Incid_Infor` text NOT NULL COMMENT 'Informe de la incidencia',
@@ -56,26 +56,26 @@ CREATE TABLE `Incidencia` (
   `Incid_GR` integer NOT NULL COMMENT 'Identificador del guardia que hizo la incidencia',
   `Incid_AR` integer NOT NULL COMMENT 'Identificador del area al que se le hizo incidencia'
 );
---Alteramos la tabla usuario
+#--Alteramos la tabla usuario
 ALTER TABLE `Usuario` COMMENT = 'Tabla de usuarios para guardar datos de los datos del administrador y guardias';
---Alteramos la tabla area
+#--Alteramos la tabla area
 ALTER TABLE `Area` COMMENT = 'Tabla de areas en donde se encuentran los animales con respecto a la granja';
---Alteramos la tabla revision
+#--Alteramos la tabla revision
 ALTER TABLE `Revision` COMMENT = 'Tabla referente a las revisiones que se hacen a las areas';
---Alteramos la tabla incidencia
+#--Alteramos la tabla incidencia
 ALTER TABLE `Incidencia` COMMENT = 'Tabla referente a las incidencias que ocurren en las areas';
---LLave foranea Usu_AA hace referencia a Area_ID
+#--LLave foranea Usu_AA hace referencia a Area_ID
 ALTER TABLE `Usuario`
 ADD FOREIGN KEY (`Usu_AA`) REFERENCES `Area` (`Area_ID`);
---LLave foranea Rev_GR hace referencia a Usu_ID
+#--LLave foranea Rev_GR hace referencia a Usu_ID
 ALTER TABLE `Revision`
 ADD FOREIGN KEY (`Rev_GR`) REFERENCES `Usuario` (`Usu_ID`);
---LLave foranea Rev_AR hace referencia a Area_ID
+#--LLave foranea Rev_AR hace referencia a Area_ID
 ALTER TABLE `Revision`
 ADD FOREIGN KEY (`Rev_AR`) REFERENCES `Area` (`Area_ID`);
---LLave foranea Incid_GR hace referencia a Usu_ID
+#--LLave foranea Incid_GR hace referencia a Usu_ID
 ALTER TABLE `Incidencia`
 ADD FOREIGN KEY (`Incid_GR`) REFERENCES `Usuario` (`Usu_ID`);
---LLave foranea Incid_AR hace referencia a Area_ID
+#--LLave foranea Incid_AR hace referencia a Area_ID
 ALTER TABLE `Incidencia`
 ADD FOREIGN KEY (`Incid_AR`) REFERENCES `Area` (`Area_ID`);

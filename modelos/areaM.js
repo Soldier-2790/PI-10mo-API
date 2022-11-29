@@ -51,10 +51,10 @@ Area.ObtPorId = (id, result) => {
     result({ kind: "no_encontrado" }, null)
   })
 }//Listo
-Area.ObtTodos = (area_Nom, result) => {
+Area.ObtTodos = (Area_Nom, result) => {
   let consult = "Select * From area"
-  if (area_Nom) {
-    query += `Where Area_Nom Like '%${area_Nom}'`
+  if (Area_Nom) {
+    query += `Where Area_Nom Like '%${Area_Nom}'`
   }
   servBD.query(consult, (err, res) => {
     if (err) {
