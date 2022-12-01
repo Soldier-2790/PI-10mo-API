@@ -11,6 +11,17 @@ incidenciaR.get('/', (req, res) => {
     })
   })
 })
+incidenciaR.get('/:id', (req, res) => {
+  console.log('Accediendo a incidencias')
+  req.getConnection((err, conn) => {
+    if (err) return res.send(err)
+    conn.query('Select * From incidencia Where Incid_ID = ?', [req.params.id], (err, row) => {
+      if (err) return res.send(err)
+      res.json(row)
+      console.log(row)
+    })
+  })
+})
 incidenciaR.post('/', (req, res) => {
   req.getConnection((err, conn) => {
     if (err) return res.send(err)

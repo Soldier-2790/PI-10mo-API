@@ -19,6 +19,86 @@ CREATE TABLE `Usuario` (
   `Usu_FP` varchar(200) COMMENT 'Foto de perfil del usuario',
   `Usu_FechaCrea` datetime DEFAULT (now()) COMMENT 'Fecha de creación del usuario'
 );
+INSERT INTO `farm_guardian`.`usuario` (
+    `Usu_NomCompl`,
+    `Usu_CE`,
+    `Usu_Contr`,
+    `Usu_Gen`,
+    `Usu_TU`,
+    `Usu_E`
+  )
+VALUES (
+    'Carlos Eduardo Quijano Vazquez',
+    'carlose@example.com',
+    'carlose@example',
+    'Masculino',
+    'Administrador',
+    'Activo'
+  );
+INSERT INTO `farm_guardian`.`usuario` (
+    `Usu_NomCompl`,
+    `Usu_CE`,
+    `Usu_Contr`,
+    `Usu_Gen`,
+    `Usu_TU`,
+    `Usu_E`
+  )
+VALUES (
+    'Roger Aaron Castillo Chan',
+    'rogerc@example.com',
+    'rogerc@example',
+    'Masculino',
+    'Guardia',
+    'Activo'
+  );
+INSERT INTO `farm_guardian`.`usuario` (
+    `Usu_NomCompl`,
+    `Usu_CE`,
+    `Usu_Contr`,
+    `Usu_Gen`,
+    `Usu_TU`,
+    `Usu_E`
+  )
+VALUES (
+    'Jorge Elias Kuk Gamboa',
+    'jorgee@example.com',
+    'jorgee@example',
+    'Masculino',
+    'Guardia',
+    'Activo'
+  );
+INSERT INTO `farm_guardian`.`usuario` (
+    `Usu_NomCompl`,
+    `Usu_CE`,
+    `Usu_Contr`,
+    `Usu_Gen`,
+    `Usu_TU`,
+    `Usu_E`
+  )
+VALUES (
+    'Ángel Fernando Nail Tun',
+    'angelf@example.com',
+    'angelf@example',
+    'Masculino',
+    'Guardia',
+    'Activo'
+  );
+INSERT INTO `farm_guardian`.`usuario` (
+    `Usu_NomCompl`,
+    `Usu_CE`,
+    `Usu_Contr`,
+    `Usu_Gen`,
+    `Usu_TU`,
+    `Usu_E`
+  )
+VALUES (
+    'Luis Angel Martin Dzul',
+    'luisa@example.com',
+    'luisa@example',
+    'Masculino',
+    'Guardia',
+    'Activo'
+  );
 --Creamos la tabla Area
 CREATE TABLE `Area` (
   `Area_ID` integer PRIMARY KEY AUTO_INCREMENT COMMENT 'Identificador del area',
@@ -30,6 +110,76 @@ CREATE TABLE `Area` (
   `Area_E` ENUM ('Activo', 'Inactivo') DEFAULT ('Activo') COMMENT 'Estatus del area',
   `Area_FechaCrea` datetime DEFAULT (now()) COMMENT 'Fecha de creación del area'
 );
+INSERT INTO `farm_guardian`.`area` (
+    `Area_Num`,
+    `Area_Nom`,
+    `Area_Descr`,
+    `Area_Espec`,
+    `Area_CA`
+  )
+VALUES (
+    '1',
+    'Area 1',
+    'Se encuentran vacas',
+    'Vacunos',
+    '10'
+  );
+INSERT INTO `farm_guardian`.`area` (
+    `Area_Num`,
+    `Area_Nom`,
+    `Area_Descr`,
+    `Area_Espec`,
+    `Area_CA`
+  )
+VALUES (
+    '2',
+    'Area 2',
+    'Se encuentran gallinas',
+    'Gallinas',
+    '10'
+  );
+INSERT INTO `farm_guardian`.`area` (
+    `Area_Num`,
+    `Area_Nom`,
+    `Area_Descr`,
+    `Area_Espec`,
+    `Area_CA`
+  )
+VALUES (
+    '3',
+    'Area 3',
+    'Se encuentran cerdos',
+    'Cerdos',
+    '10'
+  );
+INSERT INTO `farm_guardian`.`area` (
+    `Area_Num`,
+    `Area_Nom`,
+    `Area_Descr`,
+    `Area_Espec`,
+    `Area_CA`
+  )
+VALUES (
+    '4',
+    'Area 4',
+    'Se encuentran peces',
+    'Peces',
+    '10'
+  );
+INSERT INTO `farm_guardian`.`area` (
+    `Area_Num`,
+    `Area_Nom`,
+    `Area_Descr`,
+    `Area_Espec`,
+    `Area_CA`
+  )
+VALUES (
+    '5',
+    'Area 5',
+    'Se encuentran borregos',
+    'Borregos',
+    '10'
+  );
 --Actualización
 UPDATE area
 Set Area_Num = ?,

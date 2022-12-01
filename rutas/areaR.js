@@ -11,6 +11,17 @@ areaR.get('/', (req, res) => {
     })
   })
 })
+areaR.get('/:id', (req, res) => {
+  console.log(`Buscando el area con id ${req.params.id}`)
+  req.getConnection((err, conn) => {
+    if (err) return res.send(err)
+    conn.query('Select * From area Where Area_ID = ?', [req.params.id], (err, row) => {
+      if (err) return res.send(err)
+      res.json(row)
+      console.log(row)
+    })
+  })
+})
 areaR.post('/', (req, res) => {
   req.getConnection((err, conn) => {
     if (err) return res.send(err)

@@ -11,6 +11,17 @@ revisionR.get('/', (req, res) => {
     })
   })
 })
+revisionR.get('/:id', (req, res) => {
+  console.log('Accediendo a revisiones')
+  req.getConnection((err, conn) => {
+    if (err) return res.send(err)
+    conn.query('Select * From revision', (err, rows) => {
+      if (err) return res.send(err)
+      res.json(rows)
+      console.log(rows)
+    })
+  })
+})
 revisionR.post('/', (req, res) => {
   req.getConnection((err, conn) => {
     if (err) return res.send(err)

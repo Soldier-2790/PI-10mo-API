@@ -11,6 +11,28 @@ usuarioR.get('/', (req, res) => {
     })
   })
 })
+usuarioR.get('/:id', (req, res) => {
+  console.log('Accediendo a usuarios')
+  req.getConnection((err, conn) => {
+    if (err) return res.send(err)
+    conn.query('Select * From usuario Where Usu_ID = ?', [req.params.id], (err, row) => {
+      if (err) return res.send(err)
+      res.json(row)
+      console.log(row)
+    })
+  })
+})
+usuarioR.get('/:Usu_CE/:Usu_Contr', (req, res) => {
+  console.log(`Buscando usuario con correo: ${req.params.Usu_CE} y contraseña; ${req.params.Usu_Contr}`)
+  req.getConnection((err, conn) => {
+    if (err) return res.send(err)
+    conn.query('Select * From usuario Where Usu_CE = ? and Usu_Contr = ?', [req.params.Usu_CE, req.params.Usu_Contr], (err, row) => {
+      if (err) return res.send(err)
+      res.json(row)
+      console.log(row)
+    })
+  })
+})
 usuarioR.post('/', (req, res) => {
   req.getConnection((err, conn) => {
     if (err) return res.send(err)
